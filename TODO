@@ -1,35 +1,12 @@
-----/-/-// NEXT //-/-/-----
+UI
+-----
+Pagination
+Dates filtering
+Good loading indicator & crash indicator
 
-- basic map with leaflet
-- basic graph with linkurious.js
-- include TX website UX and test it as a SPA
-
----------------------------
-
-## UI ##
-
-- filter
-    - autocomplete, multi-select, good removal, type detection
-
-- charts
-    - chart type (line chart, x/y, ...), aggregate (sum,..)
-    - autoselect two good columns and have a nothing selected state
-
-- tabs
-    - rename/remove as dropdown
-
-- save as url
-
-- ELEMENT REMOVAL: Find the underlying logic flaw
-
-- classy css (take from GFT)
-
-## PERFORMANCE ##
-
-- asynchronous rendering / data processing
-
-- sorting and filtering in one step
-
-- SQL backend for fast search and filtering: Lovefield or another
-
-- pluggable engine: offline or online
+DATA
+-------
+already sorted
+clean year / semester
+A14
+test data

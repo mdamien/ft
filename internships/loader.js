@@ -22,11 +22,11 @@ var Loader = React.createClass({
             header: true,
             complete: function(results) {
                 results.data.sort(function(x,y){
-                    if(x.num < y.num){
-                        return -1;
-                    }
-                    if(x.num > y.num){
+                    if(x.semestre_annee < y.semestre_annee){
                         return 1;
+                    }
+                    if(x.semestre_annee > y.semestre_annee){
+                        return -1;
                     }
                     return 0;
                 })
