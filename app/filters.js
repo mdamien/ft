@@ -122,6 +122,13 @@ var Filters = React.createClass({
                     onClick={this.addFilter.bind(null, key)} >{key}</a></li>));
         }
         var debug = <pre>{JSON.stringify(this.state.filters)}</pre>;
+        var message = "";
+        if(this.props.data.length != filtered_data.length){
+            message = (<strong>
+                    Filtering {filtered_data.length}
+                    /{this.props.data.length}
+                    </strong>);
+        }
         return (<div className="row">
             <div className="col-sm-2">
                 <div className="btn-group">
@@ -134,6 +141,7 @@ var Filters = React.createClass({
                     </ul>
                 </div>
                 {filters}
+                {message}
             </div>
             <div className="col-sm-10">
                 {this.renderChildren(filtered_data)}

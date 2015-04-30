@@ -12,6 +12,7 @@ SimpleSelect = React.createClass({
     },
     
     render: function(){
+        var choices = this.props.options;
         var options = this.props.options.map(function(option){
             return (<option key={option.value}
                 value={option.value}
