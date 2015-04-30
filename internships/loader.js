@@ -30,6 +30,9 @@ var Loader = React.createClass({
                     }
                     return 0;
                 })
+                results.data.map(function(x,i){
+                      x.all = _.values(x).join(' ').toLowerCase();
+                })
                 this.setState({
                     loading:false,
                     data:results.data,

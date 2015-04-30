@@ -1,17 +1,16 @@
 Filters = React.createClass({
-  statics:{
-    applyFilters:function(filters, data){
-      return data;
-    }
-  },
   handleTextFilterChange: function(){
-    this.props.filters
+    var filters = this.props.filters;
+    filters.text = this.refs.text.getDOMNode().value;
+    this.props.onUpdate(filters);
   },
   render:function() {
     return (
       <form className="form-inline row">
       <div className="form-group col-md-2">
-        <input className="form-control" name="text" type="text" placeholder="Filtre texte..." />
+        <input className="form-control" name="text" type="text" ref="text"
+          onChange={this.handleTextFilterChange}
+          placeholder="Rechercher..." value={this.props.filters.text}/>
       </div>
       <div className="form-group col-md-2">
       <label htmlFor="internship_type">Stages</label>

@@ -7,8 +7,12 @@ InternshipPanel = React.createClass({
                     <div className="panel-body">
                       {this.props.selected.description}
                       <hr/>
+                      <pre>
+                      {JSON.stringify(this.props.selected, null, 2)}
+                      </pre>
                       <div className="btn-group pull-right">
-                        <a href="#" onClick={this.props.onClose}className="btn btn-default btn-sm">close</a>
+                        <a href="#" onClick={this.props.onClose}
+                          className="btn btn-default btn-sm">close</a>
                       </div>
                     </div>
                 </div>);
