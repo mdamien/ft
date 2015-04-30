@@ -1,4 +1,4 @@
-var App = React.createClass({
+var Loader = React.createClass({
     getInitialState: function(){
         return {
             loading: false,
@@ -20,8 +20,16 @@ var App = React.createClass({
         Papa.parse(this.state.data_url, {
             download: true,
             header: true,
-            dynamicTyping: true,
             complete: function(results) {
+                results.data.sort(function(x,y){
+                    if(x.num < y.num){
+                        return -1;
+                    }
+                    if(x.num > y.num){
+                        return 1;
+                    }
+                    return 0;
+                })
                 this.setState({
                     loading:false,
                     data:results.data,
@@ -30,27 +38,14 @@ var App = React.createClass({
         });
     },
     render: function(){
-        var message = "";
         var content = "";
         if(this.state.loading){
-            message = <strong>loading .csv</strong>;
+            content = <strong>loading...</strong>;
         }
         else if(this.state.data.length > 0){
-            var tabs = [
-                {name:'table',type:'table'},
-                {type:'chart', name:'chart',x:{},y:{},scatter:true},
-                {name:'map',type:'map'},
-                {name:'graph',type:'graph'},
-                ]
-            content = (<Tabs data={this.state.data}
-                    tabs={tabs} current_tab={tabs.length-1}/>);
-            message = (<span>Imported <strong>{this.state.data_url}</strong
-                > with <strong>{this.state.data.length}</strong> lines
-                </span>);
+            content = (<Loaded data={this.state.data} />);
         }
         return (<div>
-            <input ref="data_url" defaultValue={this.state.data_url}/>
-                <button onClick={this.start_load}>load</button>  {message}
             {content}
         </div>);
     },
