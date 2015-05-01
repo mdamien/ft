@@ -20,9 +20,9 @@ Table = React.createClass({
         <thead>
         <tr>
             <th className="col-md-1">Sem.</th>
-            <th className="col-md-6">Sujet</th>
+            <th className="col-md-5">Sujet</th>
             <th className="col-md-3">Entreprise</th>
-            <th className="col-md-2">Addresse</th>
+            <th className="col-md-3">Addresse</th>
         </tr>
         </thead>
         <tbody>

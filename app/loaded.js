@@ -2,6 +2,7 @@ var Loaded = React.createClass({
     getInitialState: function(){
         return {
             filters: {},
+            selected: {},
         }
     },
     handleFilterUpdate: function(filters){
@@ -29,15 +30,18 @@ var Loaded = React.createClass({
     render: function(){
         var data_filtered = this.filtered_data();
         var content = "";
-        var table = <Table data={data_filtered} onSelected={this.handleSelected} />;
+        var table = (<div className="col-md-12">
+                <Table data={data_filtered} onSelected={this.handleSelected} />
+            </div>);
         if(this.state.selected){
             content = (<div>
-                <div className="col-md-9">{table}</div>
-                <div className="col-md-3">
+                {table}
+                <div className="col-md-10">
                     <InternshipPanel selected={this.state.selected} onClose={this.handleUnselect} />
-                </div></div>);
+                </div>
+                </div>);
         }else{
-            content = (<div className="col-md-12">{table}</div>)
+            content = table;
         }
         return (<div>
             <Filters onUpdate={this.handleFilterUpdate} filters={this.state.filters}/>
