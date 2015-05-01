@@ -32,7 +32,9 @@ var Loader = React.createClass({
                 })
                 results.data.map(function(x,i){
                       x.all = _.values(x).join(' ').toLowerCase();
+                      x.id = i
                 })
+                console.log("loaded",results.data.length,"elements")
                 this.setState({
                     loading:false,
                     data:results.data,

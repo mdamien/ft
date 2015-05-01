@@ -16,11 +16,11 @@ Filters = React.createClass({
       <label htmlFor="internship_type">Stages</label>
       <select name="internship_type" className="form-control" defaultValue="all">
         <option value="all">Tous</option>
-        <option value="tn05">TN05</option>
-        <option value="tn09">TN09</option>
-        <option value="tn10">TN10</option>
-        <option value="apprenticeship">Apprentissage</option>
-        <option value="intercultural">Interculturel</option>
+        <option value="TN05">TN05</option>
+        <option value="TN09">TN09</option>
+        <option value="TN10">TN10</option>
+        <option value="apprentissage">Apprentissage</option>
+        <option value="interculturel">Interculturel</option>
       </select>
       </div>
       <div id="branch-type-filter" className="form-group col-md-2">
