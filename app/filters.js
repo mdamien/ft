@@ -4,17 +4,28 @@ Filters = React.createClass({
     filters.text = this.refs.text.getDOMNode().value;
     this.props.onUpdate(filters);
   },
+  handleTypeChange: function(){
+    var filters = this.props.filters;
+    filters.type = this.refs.type.getDOMNode().value;
+    this.props.onUpdate(filters);
+  },
+  handleBranchChange: function(){
+    var filters = this.props.filters;
+    filters.branch = this.refs.branch.getDOMNode().value;
+    this.props.onUpdate(filters);
+  },
   render:function() {
     return (
-      <form className="form-inline row">
+      <form className="form-inline row" method="post">
       <div className="form-group col-md-2">
         <input className="form-control" name="text" type="text" ref="text"
           onChange={this.handleTextFilterChange}
           placeholder="Rechercher..." value={this.props.filters.text}/>
       </div>
       <div className="form-group col-md-2">
-      <label htmlFor="internship_type">Stages</label>
-      <select name="internship_type" className="form-control" defaultValue="all">
+      <label htmlFor="internship_type">type</label>
+      <select name="internship_type" className="form-control" defaultValue="all" ref="type"
+        onChange={this.handleTypeChange} >
         <option value="all">Tous</option>
         <option value="TN05">TN05</option>
         <option value="TN09">TN09</option>
@@ -25,17 +36,47 @@ Filters = React.createClass({
       </div>
       <div id="branch-type-filter" className="form-group col-md-2">
       <label htmlFor="branch">Branche</label>
-      <select name="branch" className="form-control" defaultValue="all">
+      <select name="branch" className="form-control" defaultValue="all"
+        onChange={this.handleBranchChange} ref="branch">
         <option value="all">Toutes</option>
-        <option value="gb">GB</option>
-        <option value="gi">GI</option>
-        <option value="gm">GM</option>
-        <option value="gp">GP</option>
-        <option value="gsm">GSM</option>
-        <option value="gsu">GSU</option>
+        <option value="GB">GB</option>
+        <option value="GI">GI</option>
+        <option value="GM/GSM">GM/GSM</option>
+        <option value="GP">GP</option>
+        <option value="GSU">GSU</option>
       </select>
       </div>
       </form>
       );
 }
+})
+
+SimpleSelect = React.createClass({
+    getInitialState: function(){
+        return {
+            value:this.props.value,
+        }
+    },
+
+    handleChange: function(){
+        var value = this.refs.select.getDOMNode().value;
+        this.setState({value:value});
+        this.props.onChange(value);
+    },
+    
+    render: function(){
+        var options = this.props.options.map(function(option){
+            return (<option key={option.value}
+                value={option.value}
+                >{option.label}</option>)
+        }.bind(this))
+        return (<div>
+            <label>{this.props.label}</label>
+            <select ref="select"
+                value={this.state.value}
+                onChange={this.handleChange} >
+                {options}
+            </select>
+            </div>);
+    },
 })

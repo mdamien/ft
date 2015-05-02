@@ -11,6 +11,9 @@ InternshipPanel = React.createClass({
         maxHeight: '80%',
         overflow: 'auto',
       }
+      var content_style = {
+      }
+      var content = {__html:this.props.selected.description.replace('\n','<br/>')}
       return (<div className="panel panel-success" style={style}>
                     <div className="panel-heading">
                       <h3 className="panel-title">{this.props.selected.sujet}</h3>
@@ -19,7 +22,7 @@ InternshipPanel = React.createClass({
                     </div>
                     <div className="panel-body">
                       <br/>
-                      {this.props.selected.description}
+                      <div style={content_style} dangerouslySetInnerHTML={content}></div>
                       <hr/>
                       <pre>
                       {JSON.stringify(this.props.selected, null, 2)}

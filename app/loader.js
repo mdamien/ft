@@ -45,7 +45,7 @@ var Loader = React.createClass({
     render: function(){
         var content = "";
         if(this.state.loading){
-            content = <strong>loading...</strong>;
+            content = <strong>loading...{this.state.data_url}</strong>;
         }
         else if(this.state.data.length > 0){
             content = (<Loaded data={this.state.data} />);

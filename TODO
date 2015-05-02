@@ -1,11 +1,14 @@
 UI
 -----
-Pagination
+Pagination ?
 Dates filtering
 Good loading indicator & crash indicator
-Affix ?
+
+Performance
+-----
+word set in each internship
+re-build table only when necessary
 
 DATA
 -------
-A15
-clean branche & niveau
+lightweight version (< 5mb) ?

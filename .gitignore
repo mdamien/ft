@@ -1,2 +1,2 @@
-stages.csv
-mini_stages.csv
+data/
+!data/fake_stages.csv
