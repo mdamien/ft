@@ -14,6 +14,11 @@ Filters = React.createClass({
     filters.branch = this.refs.branch.getDOMNode().value;
     this.props.onUpdate(filters);
   },
+  handleDisplayNotRealChange: function(evt){
+    var filters = this.props.filters;
+    filters.hide_not_real = evt.target.checked;
+    this.props.onUpdate(filters);
+  },
   render:function() {
     return (
       <form className="form-inline row" method="post">
@@ -34,7 +39,7 @@ Filters = React.createClass({
         <option value="interculturel">Interculturel</option>
       </select>
       </div>
-      <div id="branch-type-filter" className="form-group col-md-2">
+      <div className="form-group col-md-2">
       <label htmlFor="branch">Branche</label>
       <select name="branch" className="form-control" defaultValue="all"
         onChange={this.handleBranchChange} ref="branch">
@@ -45,6 +50,12 @@ Filters = React.createClass({
         <option value="GP">GP</option>
         <option value="GSU">GSU</option>
       </select>
+      </div>
+      <div className="checkbox checkbox-inline col-md-4">
+        <label>
+          <input type="checkbox" defaultChecked={false}
+            onChange={this.handleDisplayNotRealChange} /> Cacher stages non fait
+        </label>
       </div>
       </form>
       );

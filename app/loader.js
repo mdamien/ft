@@ -20,6 +20,7 @@ var Loader = React.createClass({
         Papa.parse(this.state.data_url, {
             download: true,
             header: true,
+            cache: false, //TODO add debug mode for this
             complete: function(results) {
                 results.data.sort(function(x,y){
                     if(x.semestre_annee < y.semestre_annee){
@@ -31,8 +32,9 @@ var Loader = React.createClass({
                     return 0;
                 })
                 results.data.map(function(x,i){
-                      x.all = _.values(x).join(' ').toLowerCase();
-                      x.id = i
+                    x.stage_reel = x.stage_reel == undefined || x.stage_reel == "True"
+                    x.all = _.values(x).join(' ').toLowerCase();
+                    x.id = i;
                 })
                 console.log("loaded",results.data.length,"elements")
                 this.setState({

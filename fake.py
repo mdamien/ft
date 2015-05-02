@@ -4,12 +4,12 @@ from faker import Faker
 fake = Faker(locale="fr_FR")
 #fake.seed(42)
 
-myfile = open("data/fake_stages.csv", 'w')
+myfile = open("data/fake.csv", 'w')
 wr = csv.writer(myfile)
 wr.writerow([x.strip() for x in "num, addresse, branche_abbrev, filiere," \
         "company, description, etudiant, niveau_abbrev," \
         "semestre_annee, semestre, sujet, tuteur, stage_reel".split(',')])
-for _ in range(1000):
+for _ in range(2000):
     num = fake.random_int(min=0, max=9999)
     addresse = fake.address()
     branche_abbrev = fake.random_element(('GI','GB','GP'))

@@ -8,7 +8,7 @@ Table = React.createClass({
     }
     var rows = this.props.data.slice(0,100).map(function(x){
         var klass = "";
-        if(x.stage_reel != undefined && x.stage_reel == "False"){
+        if(x.stage_reel != undefined && !x.stage_reel){
             klass = "warning"
         }
         infos =  (<tr style={tr_style} key={x.id} onClick={this.handleSelected.bind(null,x)} className={klass}>
@@ -23,7 +23,7 @@ Table = React.createClass({
         <table className="table table-condensed table-hover table-striped">
         <thead>
         <tr>
-            <th className="col-md-2">Sem.</th>
+            <th className="col-md-2"></th>
             <th className="col-md-4">Sujet</th>
             <th className="col-md-3">Entreprise</th>
             <th className="col-md-3">Addresse</th>

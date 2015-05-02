@@ -19,18 +19,25 @@ var FilterTable = React.createClass({
         if(filters){
             var text = false;
             if(filters.text && filters.text != ''){
-                var text = filters.text.toLowerCase();
+                text = filters.text.toLowerCase();
             }
             var type = false;
             if(filters.type && filters.type != 'all'){
-                var type = filters.type;
+                type = filters.type;
             }
             var branch = false;
             if(filters.branch && filters.branch != 'all'){
-                var branch = filters.branch;
+                branch = filters.branch;
             }
-            if(text || type || branch){
+            var hide_not_real = false;
+            if(filters.hide_not_real != undefined && filters.hide_not_real == true){
+                hide_not_real = true;
+            }
+            if(text || type || branch ||hide_not_real){
                 return jQuery.grep(data,function(line){
+                    if(hide_not_real && !line.stage_reel){
+                        return false;
+                    }
                     if(type && line.niveau_abbrev != type){
                         return false;
                     }
