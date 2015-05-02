@@ -5,6 +5,7 @@ var FilterTable = React.createClass({
         }
     },
     handleFilterUpdate: function(filters){
+        console.log('filter updated', filters)
         this.setState({filters:filters});
     },
     handleSelected: function(selected){
@@ -33,8 +34,26 @@ var FilterTable = React.createClass({
             if(filters.hide_not_real != undefined && filters.hide_not_real == true){
                 hide_not_real = true;
             }
-            if(text || type || branch ||hide_not_real){
+            var from_sem = false;
+            var from_year = false;
+            if(filters.from != undefined){
+                from_sem = filters.from[0]
+                from_year = parseInt(filters.from.slice(1))
+            }
+            var to_sem = false;
+            var to_year = false;
+            if(filters.to != undefined){
+                to_sem = filters.to[0]
+                to_year = parseInt(filters.to.slice(1))
+            }
+            if(text || type || branch || hide_not_real || from_year || to_year){
                 return jQuery.grep(data,function(line){
+                    if( from_year && line.semestre_annee < from_year){
+                        return false;
+                    }
+                    if( to_year && line.semestre_annee > to_year){
+                        return false;
+                    }
                     if(hide_not_real && !line.stage_reel){
                         return false;
                     }
@@ -56,6 +75,12 @@ var FilterTable = React.createClass({
     render: function(){
         var data_filtered = this.filtered_data();
         var content = "";
+        var counter = "";
+        if(this.props.data.length != data_filtered.length){
+            counter = (<span className="label label-success pull-right">
+                    Affiche {data_filtered.length} / {this.props.data.length} stages
+                </span>)
+        }
         var table = (<div className="col-md-12">
                 <Table data={data_filtered} onSelected={this.handleSelected} />
             </div>);
@@ -71,7 +96,8 @@ var FilterTable = React.createClass({
         }
         return (<div>
             <Filters onUpdate={this.handleFilterUpdate} filters={this.state.filters}/>
-            <hr/>
+            <br/>
+            {counter}
             <div className="row">
                 {content}
             </div>

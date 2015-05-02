@@ -19,9 +19,29 @@ Filters = React.createClass({
     filters.hide_not_real = evt.target.checked;
     this.props.onUpdate(filters);
   },
+  handleFromChange: function(evt){
+    var filters = this.props.filters;
+    filters.from = this.refs.from.getDOMNode().value;
+    this.props.onUpdate(filters);
+  },
+  handleToChange: function(evt){
+    var filters = this.props.filters;
+    filters.to = this.refs.to.getDOMNode().value;
+    this.props.onUpdate(filters);
+  },
   render:function() {
+    var date_min = "A2002";
+    var date_max = "A2015";
+    var dates = []
+    for(var year = 2002; year < 2015; year++){
+      dates.push('P'+year);
+      dates.push('A'+year);
+    }
+    var options = dates.map(function(d,i){
+        return <option value={d} key={i}>{d}</option>
+    })
     return (
-      <form className="form-inline row" method="post">
+      <div className="form-inline row">
       <div className="form-group col-md-2">
         <input className="form-control" name="text" type="text" ref="text"
           onChange={this.handleTextFilterChange}
@@ -51,43 +71,27 @@ Filters = React.createClass({
         <option value="GSU">GSU</option>
       </select>
       </div>
-      <div className="checkbox checkbox-inline col-md-4">
+      <div className="checkbox checkbox-inline col-md-2">
         <label>
           <input type="checkbox" defaultChecked={false}
             onChange={this.handleDisplayNotRealChange} /> Cacher stages non fait
         </label>
       </div>
-      </form>
+      <div className="form-group col-md-2">
+      <label htmlFor="from">De</label>
+      <select name="from" className="form-control" defaultValue={date_min} ref="from"
+        onChange={this.handleFromChange}>
+        {options}
+      </select>
+      </div>
+      <div className="form-group col-md-2">
+      <label htmlFor="to">A</label>
+      <select name="to" className="form-control" defaultValue={date_max} ref="to"
+        onChange={this.handleToChange}>
+        {options}
+      </select>
+      </div>
+      </div>
       );
 }
-})
-
-SimpleSelect = React.createClass({
-    getInitialState: function(){
-        return {
-            value:this.props.value,
-        }
-    },
-
-    handleChange: function(){
-        var value = this.refs.select.getDOMNode().value;
-        this.setState({value:value});
-        this.props.onChange(value);
-    },
-    
-    render: function(){
-        var options = this.props.options.map(function(option){
-            return (<option key={option.value}
-                value={option.value}
-                >{option.label}</option>)
-        }.bind(this))
-        return (<div>
-            <label>{this.props.label}</label>
-            <select ref="select"
-                value={this.state.value}
-                onChange={this.handleChange} >
-                {options}
-            </select>
-            </div>);
-    },
 })

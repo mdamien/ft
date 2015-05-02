@@ -16,6 +16,6 @@ var file = "fake";
 if('file' in query){
     file = query.file
 }
-console.log(file);
+console.log("load",file);
 
 React.render(<Loader data_url={"data/"+file+".csv"} />, document.getElementById('content'))

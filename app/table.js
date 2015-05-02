@@ -14,7 +14,11 @@ Table = React.createClass({
         infos =  (<tr style={tr_style} key={x.id} onClick={this.handleSelected.bind(null,x)} className={klass}>
             <td>{x.semestre}{x.semestre_annee} {x.niveau_abbrev} {x.branche_abbrev}</td>
             <td>{x.sujet}</td>
-            <td><b>{x.company}</b></td>
+            <td>
+                <b>
+                {x.company}
+                </b>
+            </td>
             <td>{x.addresse}</td>
             </tr>)
         return infos;
