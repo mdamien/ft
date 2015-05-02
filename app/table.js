@@ -3,10 +3,11 @@ Table = React.createClass({
       this.props.onSelected(x);
   },
   render: function(){
+    var LIMIT = 200;
     var tr_style = {
         cursor:'pointer',
     }
-    var rows = this.props.data.slice(0,100).map(function(x){
+    var rows = this.props.data.slice(0,LIMIT).map(function(x){
         var klass = "";
         if(x.stage_reel != undefined && !x.stage_reel){
             klass = "warning"
@@ -35,7 +36,10 @@ Table = React.createClass({
         </thead>
         <tbody>
         {rows}
+        <tr><th colspan="4">{this.props.data.length > LIMIT ?  "..." : ''}</th></tr>
+
         </tbody>
-        </table>)
+        </table>
+        )
 }
 })

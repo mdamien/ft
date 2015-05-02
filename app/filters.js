@@ -33,7 +33,7 @@ Filters = React.createClass({
     var date_min = "A2002";
     var date_max = "A2015";
     var dates = []
-    for(var year = 2002; year < 2015; year++){
+    for(var year = 2002; year <= 2015; year++){
       dates.push('P'+year);
       dates.push('A'+year);
     }

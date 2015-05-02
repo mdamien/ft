@@ -5,6 +5,7 @@ var FilterTable = React.createClass({
         }
     },
     handleFilterUpdate: function(filters){
+        this.handleUnselect();
         console.log('filter updated', filters)
         this.setState({filters:filters});
     },
@@ -84,6 +85,9 @@ var FilterTable = React.createClass({
         var table = (<div className="col-md-12">
                 <Table data={data_filtered} onSelected={this.handleSelected} />
             </div>);
+        if(data_filtered.length == 0){
+            table = <h5 className="text-center">Aucune donnée à afficher</h5>;
+        }
         if(this.state.selected){
             content = (<div>
                 {table}
